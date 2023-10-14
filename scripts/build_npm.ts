@@ -29,10 +29,10 @@ await build({
     },
   },
   async postBuild() {
-    // TODO Deno.copyFileSync("LICENSE", "npm/LICENSE");
     // make sure we build the wasm build before copying it
     await new Deno.Command("deno", { args: ["task", "build"] }).spawn().status;
     Deno.copyFileSync("lib/rs_lib_bg.wasm", "npm/esm/lib/rs_lib_bg.wasm");
+    Deno.copyFileSync("LICENSE", "npm/LICENSE");
     Deno.copyFileSync("README.md", "npm/README.md");
   },
 });
