@@ -17,7 +17,3 @@ console.log(type.extension());
 console.log(type.matcherType());
 console.log(type.mimeType());
 ```
-
-### TODO
-
-- [ ] implement get_by_path
