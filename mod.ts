@@ -65,7 +65,8 @@ export function get(buf: Uint8Array): Type | undefined {
 
 /** Returns the file type of the file given a path. */
 export function getFromPath(path: string): Type | undefined {
-  const file = Deno.openSync(path);
+  // NOTE: read: true is the default, but seems there is a dnt bug
+  const file = Deno.openSync(path, { read: true });
   const limit = Math.min(file.statSync().size, 8192) + 1;
   const bytes = new Uint8Array(limit);
   file.readSync(bytes);
