@@ -2,6 +2,8 @@
 
 Deno wasm bindings to https://github.com/bojand/infer
 
+https://www.npmjs.com/package/deno-infer
+
 ## Usage
 
 ```ts
