@@ -12,6 +12,7 @@ export type MatcherType =
   | "Video"
   | "Custom";
 
+// TODO: maybe let the user decide when to instantiate
 const wasmModule = await instantiate();
 
 export class Type {
