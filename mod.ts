@@ -12,20 +12,19 @@ export type MatcherType =
   | "Video"
   | "Custom";
 
-// TODO: maybe let the user decide when to instantiate
 const wasmModule = await instantiate();
 
 export class Type {
-  inner: wasmType;
+  #inner: wasmType;
   constructor(inner: wasmType) {
-    this.inner = inner;
+    this.#inner = inner;
   }
 
   public extension(): string {
-    return this.inner.extension();
+    return this.#inner.extension();
   }
   public matcherType(): MatcherType {
-    switch (this.inner.matcher_type()) {
+    switch (this.#inner.matcher_type()) {
       case 0:
         return "App";
       case 1:
@@ -51,10 +50,11 @@ export class Type {
     }
   }
   public mimeType(): string {
-    return this.inner.mime_type();
+    return this.#inner.mime_type();
   }
-  //TODO: overwrite toString
-  // the obvious way didn't work
+  get [Symbol.toStringTag]() {
+    return this.extension();
+  }
 }
 
 /** Returns the file type of the buffer. */
