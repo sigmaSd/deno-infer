@@ -64,10 +64,10 @@ export function get(buf: Uint8Array): Type | undefined {
   return new Type(wasmType);
 }
 
-/** Returns the file type of the file given a path. */
+/** Returns the file type of the file given a path.
+
+Requires deno version 1.37.3 if used from npm */
 export function getFromPath(path: string): Type | undefined {
-  // TODO
-  // error: Uncaught (in promise) Error: OpenOptions requires at least one option to be true
   const file = Deno.openSync(path, { read: true });
   const limit = Math.min(file.statSync().size, 8192) + 1;
   const bytes = new Uint8Array(limit);
