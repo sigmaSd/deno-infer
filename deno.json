@@ -1,6 +1,10 @@
 {
   "tasks": {
-    "wasmbuild": "deno run -A https://deno.land/x/wasmbuild@0.15.0/main.ts"
+    "wasmbuild": "deno run -A https://deno.land/x/wasmbuild@0.15.0/main.ts",
+    "test": "deno task wasmbuild && deno test -A",
+    "build:npm": "deno run -A scripts/build_npm.ts",
+    "update": "deno run --allow-env --allow-read --allow-net --allow-write=. https://deno.land/x/molt@0.7.3/cli.ts check mod.ts scripts/**/*.ts tests/**/*.ts",
+    "publish": "cd npm && npm publish"
   },
   "exclude": ["npm"]
 }
