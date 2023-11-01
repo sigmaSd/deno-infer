@@ -1,5 +1,6 @@
 import { instantiate, Type as wasmType } from "./lib/rs_lib.generated.js";
 
+/** Type of the matcher */
 export type MatcherType =
   | "App"
   | "Archive"
@@ -14,15 +15,20 @@ export type MatcherType =
 
 const wasmModule = await instantiate();
 
+/** Generic information for a type */
 export class Type {
   #inner: wasmType;
+
+  /** internal constructor */
   constructor(inner: wasmType) {
     this.#inner = inner;
   }
 
+  /** Returns the file extension */
   public extension(): string {
     return this.#inner.extension();
   }
+  /** Returns the type of matcher */
   public matcherType(): MatcherType {
     switch (this.#inner.matcher_type()) {
       case 0:
@@ -49,10 +55,12 @@ export class Type {
         throw "unreachable!";
     }
   }
+  /** Returns the mime type */
   public mimeType(): string {
     return this.#inner.mime_type();
   }
-  get [Symbol.toStringTag]() {
+  /** Overrides toStringTag to show the file extension */
+  get [Symbol.toStringTag](): string {
     return this.extension();
   }
 }
