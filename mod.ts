@@ -67,6 +67,7 @@ export class Type {
 
 /** Returns the file type of the buffer. */
 export function get(buf: Uint8Array): Type | undefined {
+  console.log("Some How this is called!");
   const wasmType = wasmModule.get(buf);
   if (wasmType === undefined) return;
   return new Type(wasmType);
