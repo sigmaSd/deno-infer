@@ -31,24 +31,34 @@ export class Type {
   /** Returns the type of matcher */
   public matcherType(): MatcherType {
     switch (this.#inner.matcher_type()) {
+      // @ts-ignore: upstream is fixing this
       case 0:
         return "App";
+      // @ts-ignore: upstream is fixing this
       case 1:
         return "Archive";
+      // @ts-ignore: upstream is fixing this
       case 2:
         return "Audio";
+      // @ts-ignore: upstream is fixing this
       case 3:
         return "Book";
+      // @ts-ignore: upstream is fixing this
       case 4:
         return "Doc";
+      // @ts-ignore: upstream is fixing this
       case 5:
         return "Font";
+      // @ts-ignore: upstream is fixing this
       case 6:
         return "Image";
+      // @ts-ignore: upstream is fixing this
       case 7:
         return "Text";
+      // @ts-ignore: upstream is fixing this
       case 8:
         return "Video";
+      // @ts-ignore: upstream is fixing this
       case 9:
         return "Custom";
       default:
