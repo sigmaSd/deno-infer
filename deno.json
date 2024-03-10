@@ -1,6 +1,6 @@
 {
   "name": "@sigmasd/deno-infer",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "exports": "./mod.ts",
   "tasks": {
     "wasmbuild": "deno run -A jsr:@deno/wasmbuild@0.16.0",
