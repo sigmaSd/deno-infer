@@ -1,20 +1,19 @@
-# Infer (deno-wasm)
+# Infer
 
-Deno wasm bindings to https://github.com/bojand/infer
-
-https://www.npmjs.com/package/deno-infer
-
-Should work with node as well
+Infer file type. This is a wasm bindings to https://github.com/bojand/infer. It
+should work cross runtime.
 
 ## Usage
 
 ```ts
 import * as infer from "npm:deno-infer";
 
-const file = Deno.readFileSync("filePath");
-const type = infer.get(file);
-// or this convinient method that reads only the start of the file
-// const type = infer.getFromPath(file); // requires Deno 1.37.3 if used from npm
+const type = infer.get(
+  new TextEncoder().encode(
+    "PK\x03\x04", // zip magic string,
+  ),
+);
+
 console.log(type.extension());
 console.log(type.matcherType());
 console.log(type.mimeType());

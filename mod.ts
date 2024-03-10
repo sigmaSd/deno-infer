@@ -1,3 +1,27 @@
+/**
+# Infer
+
+Infer file type. This is a wasm bindings to https://github.com/bojand/infer. It should work cross runtime.
+
+## Usage
+
+@example
+```ts
+import * as infer from "@sigmasd/deno-infer";
+
+const type = infer.get(
+  new TextEncoder().encode(
+    "PK\x03\x04", // zip magic string,
+  ),
+);
+
+console.log(type.extension());
+console.log(type.matcherType());
+console.log(type.mimeType());
+```
+@module
+*/
+
 import { instantiate, Type as wasmType } from "./lib/rs_lib.generated.js";
 
 /** Type of the matcher */
@@ -13,7 +37,7 @@ export type MatcherType =
   | "Video"
   | "Custom";
 
-const wasmModule = await instantiate();
+const wasmModule = instantiate();
 
 /** Generic information for a type */
 export class Type {
@@ -70,17 +94,4 @@ export function get(buf: Uint8Array): Type | undefined {
   const wasmType = wasmModule.get(buf);
   if (wasmType === undefined) return;
   return new Type(wasmType);
-}
-
-/** Returns the file type of the file given a path.
-
-Requires deno version 1.37.3 if used from npm */
-export function getFromPath(path: string): Type | undefined {
-  const file = Deno.openSync(path, { read: true });
-  const limit = Math.min(file.statSync().size, 8192) + 1;
-  const bytes = new Uint8Array(limit);
-  file.readSync(bytes);
-  file.close();
-
-  return get(bytes);
 }

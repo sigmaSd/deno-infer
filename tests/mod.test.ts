@@ -8,9 +8,7 @@ Deno.test("smoke", () => {
     Deno.writeTextFileSync(file, "#!/bin/sh");
 
     const type = infer.get(Deno.readFileSync(file));
-    const type2 = infer.getFromPath(file);
     assert(type);
-    assertEquals(type.mimeType(), type2?.mimeType());
 
     assertEquals(type.extension(), "sh");
     assertEquals(type.matcherType(), "Text");
