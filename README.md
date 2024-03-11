@@ -6,7 +6,8 @@ should work cross runtime.
 ## Usage
 
 ```ts
-import * as infer from "npm:deno-infer";
+import * as infer from "@sigmasd/deno-infer";
+
 
 const type = infer.get(
   new TextEncoder().encode(
