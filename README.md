@@ -8,7 +8,6 @@ should work cross runtime.
 ```ts
 import * as infer from "jsr:@sigmasd/deno-infer";
 
-
 const type = infer.get(
   new TextEncoder().encode(
     "PK\x03\x04", // zip magic string,
