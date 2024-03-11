@@ -6,7 +6,7 @@ should work cross runtime.
 ## Usage
 
 ```ts
-import * as infer from "@sigmasd/deno-infer";
+import * as infer from "jsr:@sigmasd/deno-infer";
 
 
 const type = infer.get(
