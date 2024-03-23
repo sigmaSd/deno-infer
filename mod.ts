@@ -22,7 +22,7 @@ console.log(type.mimeType());
 @module
 */
 
-import { instantiate, Type as wasmType } from "./lib/rs_lib.generated.js";
+import { instantiate, type Type as wasmType } from "./lib/rs_lib.generated.js";
 
 /** Type of the matcher */
 export type MatcherType =
