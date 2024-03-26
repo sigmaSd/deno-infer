@@ -103,14 +103,7 @@ export async function getFromPath(
   path: string,
 ): Promise<Type | undefined> {
   const { pathToFileURL } = await import("node:url");
-  const body = await fetch(pathToFileURL(path)).then((r) => r.body);
-  const reader = body?.getReader();
-  const buf = await reader?.read();
-  reader?.cancel();
-  const value = buf?.value;
-  if (value) {
-    return get(value);
-  }
+  return getFromUrl(pathToFileURL(path));
 }
 
 /** Returns the file type of the file
