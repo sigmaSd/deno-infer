@@ -23,6 +23,7 @@ console.log(type.mimeType());
 */
 
 import { instantiate, type Type as wasmType } from "./lib/rs_lib.generated.js";
+import { pathToFileURL } from "node:url";
 
 /** Type of the matcher */
 export type MatcherType =
@@ -94,4 +95,26 @@ export function get(buf: Uint8Array): Type | undefined {
   const wasmType = wasmModule.get(buf);
   if (wasmType === undefined) return;
   return new Type(wasmType);
+}
+
+/** Returns the file type of the file
+    Accepts URLs and paths as input
+*/
+export async function getFromPath(pathOrUrl: string | URL) {
+  const uri = (() => {
+    try {
+      return new URL(pathOrUrl);
+    } catch {
+      if (typeof pathOrUrl !== "string") return pathOrUrl;
+      return pathToFileURL(pathOrUrl);
+    }
+  })();
+  const body = await fetch(uri).then((r) => r.body);
+  const reader = body?.getReader();
+  const buf = await reader?.read();
+  reader?.cancel();
+  const value = buf?.value;
+  if (value) {
+    return get(value);
+  }
 }
