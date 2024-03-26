@@ -1,7 +1,6 @@
-import { assertEquals } from "https://deno.land/std@0.204.0/assert/assert_equals.ts";
-import * as infer from "../mod.ts";
-import { assert } from "https://deno.land/std@0.204.0/assert/assert.ts";
+import { assert, assertEquals } from "jsr:@std/assert@0.220.1";
 import { pathToFileURL } from "node:url";
+import * as infer from "../mod.ts";
 
 Deno.test("smoke", async () => {
   {
