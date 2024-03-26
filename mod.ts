@@ -100,7 +100,9 @@ export function get(buf: Uint8Array): Type | undefined {
 /** Returns the file type of the file
     Accepts URLs and paths as input
 */
-export async function getFromPath(pathOrUrl: string | URL) {
+export async function getFromPath(
+  pathOrUrl: string | URL,
+): Promise<Type | undefined> {
   const uri = (() => {
     try {
       return new URL(pathOrUrl);
