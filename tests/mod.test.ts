@@ -20,7 +20,7 @@ Deno.test("smoke", async () => {
 
     const type = await infer.getFromPath(file);
     // make sure also using it on a url works
-    await infer.getFromPath(pathToFileURL(file));
+    await infer.getFromUrl(pathToFileURL(file));
     assert(type);
 
     assertEquals(type.extension(), "sh");

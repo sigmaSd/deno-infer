@@ -98,20 +98,28 @@ export function get(buf: Uint8Array): Type | undefined {
 }
 
 /** Returns the file type of the file
-    Accepts URLs and paths as input
-*/
+  Accepts a path as input
+ */
 export async function getFromPath(
-  pathOrUrl: string | URL,
+  path: string,
 ): Promise<Type | undefined> {
-  const uri = (() => {
-    try {
-      return new URL(pathOrUrl);
-    } catch {
-      if (typeof pathOrUrl !== "string") return pathOrUrl;
-      return pathToFileURL(pathOrUrl);
-    }
-  })();
-  const body = await fetch(uri).then((r) => r.body);
+  const body = await fetch(pathToFileURL(path)).then((r) => r.body);
+  const reader = body?.getReader();
+  const buf = await reader?.read();
+  reader?.cancel();
+  const value = buf?.value;
+  if (value) {
+    return get(value);
+  }
+}
+
+/** Returns the file type of the file
+  Accepts a URL as input
+ */
+export async function getFromUrl(
+  url: URL,
+): Promise<Type | undefined> {
+  const body = await fetch(url).then((r) => r.body);
   const reader = body?.getReader();
   const buf = await reader?.read();
   reader?.cancel();
