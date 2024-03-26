@@ -23,7 +23,6 @@ console.log(type.mimeType());
 */
 
 import { instantiate, type Type as wasmType } from "./lib/rs_lib.generated.js";
-import { pathToFileURL } from "node:url";
 
 /** Type of the matcher */
 export type MatcherType =
@@ -103,6 +102,7 @@ export function get(buf: Uint8Array): Type | undefined {
 export async function getFromPath(
   path: string,
 ): Promise<Type | undefined> {
+  const { pathToFileURL } = await import("node:url");
   const body = await fetch(pathToFileURL(path)).then((r) => r.body);
   const reader = body?.getReader();
   const buf = await reader?.read();
