@@ -1,6 +1,6 @@
 {
   "name": "@sigmasd/deno-infer",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "exports": {
     ".": "./mod.ts",
     "./inline": "./mod_inline.ts"
