@@ -16,7 +16,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
 
-
     steps:
       - name: Setup repo
         uses: actions/checkout@v3
@@ -36,6 +35,6 @@ jobs:
 
       - name: Build
         run: deno task wasmbuild --sync
-      
+
       - name: Run tests
         run: deno test -A
