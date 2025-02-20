@@ -18,6 +18,13 @@ const type = infer.get(
 console.log(type.extension());
 console.log(type.matcherType());
 console.log(type.mimeType());
+
+## Browser
+
+Browser and runtimes that don't support wasm import can use the `inline` module which have the wasm file inlined.
+
+```ts
+import * as infer from "jsr:@sigmasd/deno-infer/inline";
 ```
 @module
 */
