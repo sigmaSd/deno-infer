@@ -20,6 +20,11 @@ jobs:
       - name: Setup repo
         uses: actions/checkout@v4
 
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.85.0 # Specify minimum Rust version that supports 2024 edition
+
       - name: Setup Deno
         uses: denoland/setup-deno@v2
 
