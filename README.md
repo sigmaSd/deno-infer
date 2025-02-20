@@ -5,8 +5,12 @@ should work cross runtime.
 
 ## Usage
 
-```ts
-import * as infer from "jsr:@sigmasd/deno-infer";
+## Examples
+
+**Example 1**
+
+````ts
+import * as infer from "@sigmasd/deno-infer";
 
 const type = infer.get(
   new TextEncoder().encode(
@@ -17,7 +21,6 @@ const type = infer.get(
 console.log(type.extension());
 console.log(type.matcherType());
 console.log(type.mimeType());
-```
 
 ## Browser
 
@@ -25,4 +28,4 @@ Browser and runtimes that don't support wasm import can use the `inline` module 
 
 ```ts
 import * as infer from "jsr:@sigmasd/deno-infer/inline";
-```
+````
