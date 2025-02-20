@@ -22,7 +22,7 @@ console.log(type.mimeType());
 @module
 */
 
-import { instantiate, type Type as wasmType } from "./lib/rs_lib.generated.js";
+import { get as wasmGet, type Type as wasmType } from "./lib/rs_lib.js";
 
 /** Type of the matcher */
 export type MatcherType =
@@ -36,8 +36,6 @@ export type MatcherType =
   | "Text"
   | "Video"
   | "Custom";
-
-const wasmModule = instantiate();
 
 /** Generic information for a type */
 export class Type {
@@ -91,7 +89,7 @@ export class Type {
 
 /** Returns the file type of the buffer. */
 export function get(buf: Uint8Array): Type | undefined {
-  const wasmType = wasmModule.get(buf);
+  const wasmType = wasmGet(buf);
   if (wasmType === undefined) return;
   return new Type(wasmType);
 }
