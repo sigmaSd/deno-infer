@@ -18,6 +18,7 @@ const type = infer.get(
 console.log(type.extension());
 console.log(type.matcherType());
 console.log(type.mimeType());
+```
 
 ## Browser
 
